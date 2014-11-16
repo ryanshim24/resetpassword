@@ -71,6 +71,7 @@ class AccessController < ApplicationController
   def reset_password
     @user = User.find_by_reset_token(params[:user_reset_token])
     @user.update_attributes(user_params)
+    @user.update_attributes(:reset_token => nil)
     if(@user.save)
       session[:user_id] = @user.id
       session[:is_admin] = @user.is_admin

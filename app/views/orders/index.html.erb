@@ -1,0 +1,22 @@
+<h1>Your orders</h1>
+
+<%= link_to("See all products", products_path)%>
+<br>
+<%= link_to("See your profile page", users_show_path(@current_user.id)) %>
+<br>
+<%= link_to("Make a new order", orders_new_path(@current_user.id)) %>
+
+<% @orders.each do |order| %>
+<p>
+  ID number: <%= order.id %>
+  <br>
+  Name: <%= order.name %>
+  <%= link_to "See more", orders_show_path(@current_user.id, order.id) %>
+  <br>
+  Total price: $<%= order.products.sum(:price)%>
+</p>
+
+<% end %>
+<p>
+  <a href = "/logout" class = "btn btn-danger">Logout</a>
+</p>

@@ -1,0 +1,36 @@
+<%= link_to("See all products", products_path) %>
+
+<h1>Create a new order</h1>
+
+<% if @order.errors.any? %>
+  <ul class = "text-danger list-style-none">
+   <%  for err in @order.errors.full_messages %>
+    <li>
+      <%= err%>
+    </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_for(@order, url: orders_new_path, class: "form-horizontal") do |f|%>
+  <%= f.hidden_field(:user_id, value: @current_user.id) %>
+
+    <div class = "form-group">
+
+      <%= f.label(:name, "Name", class: "control-label")%>
+
+      <%= f.text_field(:name, autofocus: true, class: "form-control")%>
+      </div>
+  <div class = "form-group">
+    <% Product.order(:name).each do |product| %>
+      <div class="checkbox">
+        <label>
+          <%= check_box_tag('product_ids[]', product.id) %>
+        <%= product.name%>
+        </label>
+      </div>
+    <% end %>
+  </div>
+ <%= f.submit("Create an order", class: "btn btn-info") %>
+<% end %>
+

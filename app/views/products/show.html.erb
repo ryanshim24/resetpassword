@@ -1,0 +1,21 @@
+<h1>Product detail page</h1>
+
+<p>
+ Name: <%= @product.name %>
+</p>
+
+<p>
+ Category: <%= @product.category %>
+</p>
+
+<p>
+ Price: <%= @product.price %>
+</p>
+
+
+<%= link_to("Edit", products_edit_path(@product)) %>
+<br>
+<%= link_to 'Destroy',  products_show_path(@product.id),  method: :delete, data: { confirm: 'Are you sure?' } %>
+<br>
+<%= link_to("See all products", products_path) %>
+

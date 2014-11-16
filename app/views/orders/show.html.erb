@@ -1,0 +1,15 @@
+<h1>Order detail page</h1>
+
+<% @order.products.each do |product| %>
+  <p>
+    <%= product.name%>
+  <br>
+    <%= product.category%>
+  <br>
+    $<%= product.price%>
+  </p>
+<% end %>
+
+<%= link_to 'See your orders', orders_path%>
+<br>
+<%= link_to 'See all products',  products_path%>

@@ -1,0 +1,29 @@
+<h1>See all our products!</h1>
+<%= link_to("See your profile page", users_show_path(@current_user.id)) %>
+<p>
+<%= link_to("Make a new order", orders_new_path(@current_user.id)) %>
+<br>
+<%= link_to("See your orders", orders_path(@current_user.id)) %>
+</p>
+<% @products.each do |product| %>
+<p>
+  Name: <%= product.name %>
+  <br>
+  Category: <%= product.category%>
+  <br>
+  Price: $<%= product.price%>
+  <br>
+  <% if @current_user.is_admin == true %>
+    <%= link_to("Details", products_show_path(product.id)) %>
+  <% end %>
+
+</p>
+<% end %>
+
+<p>
+  <% if @current_user.is_admin == true %>
+    <%= link_to("Create a new product", products_new_path) %>
+  <% end %>
+</p>
+
+<a href = "/logout" class = "btn btn-danger">Logout</a>

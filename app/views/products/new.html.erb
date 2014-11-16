@@ -1,0 +1,30 @@
+<h1>Add a new product</h1>
+
+<% if @product.errors.any? %>
+  <ul class = "text-danger list-style-none">
+   <%  for err in @product.errors.full_messages %>
+    <li>
+      <%= err%>
+    </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_for(@product, url: products_create_path) do |f|%>
+<div class = "form-group">
+  <%= f.label(:name, class: "control-label") %>
+  <%= f.text_field(:name, autofocus: true, class: "form-control") %>
+</div>
+
+<div class="form-group">
+  <%= f.label(:category,  class: "control-label") %>
+  <%= f.text_field(:category,  class: "form-control") %>
+</div>
+
+<div class="form-group">
+  <%= f.label(:price,  class: "control-label") %>
+  <%= f.text_field(:price,  class: "form-control") %>
+</div>
+
+<%= f.submit("Add a product!", class: "btn btn-lg btn-info") %>
+<% end %>
